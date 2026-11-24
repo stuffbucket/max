@@ -41,6 +41,18 @@ const rule = rootManifest.pnpmTarballUrlPolicy?.rules?.[0];
 const registry = execFileSync("pnpm", ["config", "get", "registry"], { cwd: root, encoding: "utf8" }).trim();
 if (registry !== rule?.registry) problems.push(`pnpm resolves from ${registry}, expected ${rule?.registry ?? "a configured proxy"}`);
 
+// Dependabot can reach only registries declared in its own config, not ones set in .npmrc.
+const dependabot = readFileSync(join(root, ".github", "dependabot.yml"), "utf8");
+const proxyName = [...dependabot.matchAll(/^ {2}([\w-]+):\n {4}type: npm-registry\n {4}url: (\S+)$/gm)].find(
+  ([, , url]) => url === rule?.registry,
+)?.[1];
+const npmUpdate = dependabot.split(/^ {2}- package-ecosystem: /m).find((block) => block.startsWith("npm\n"));
+if (proxyName === undefined) {
+  problems.push(`.github/dependabot.yml: no npm-registry declares ${rule?.registry ?? "the configured proxy"}`);
+} else if (npmUpdate === undefined || !new RegExp(`^ {6}- ${proxyName}$`, "m").test(npmUpdate)) {
+  problems.push(`.github/dependabot.yml: the npm update does not use registry ${proxyName}`);
+}
+
 const mise = readFileSync(join(root, "mise.toml"), "utf8");
 const misePnpm = /^pnpm = "(.+)"$/m.exec(mise)?.[1];
 if (rootManifest.packageManager !== `pnpm@${misePnpm}`) {

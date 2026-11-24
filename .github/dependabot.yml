@@ -1,4 +1,14 @@
 version: 2
+
+# Dependabot jobs can reach only hosts declared here; a registry set only in .npmrc is
+# blocked by its egress allowlist. The proxy is anonymous, so no credentials are needed.
+# scripts/check.mjs keeps this URL aligned with .npmrc and the root tarball policy.
+registries:
+  npm-proxy:
+    type: npm-registry
+    url: https://packagefeedproxy.microsoft.io/npm/
+    replaces-base: true
+
 updates:
   - package-ecosystem: github-actions
     directory: /
@@ -11,6 +21,8 @@ updates:
 
   - package-ecosystem: npm
     directory: /
+    registries:
+      - npm-proxy
     schedule:
       interval: weekly
     groups:

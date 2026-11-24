@@ -16,7 +16,7 @@ Max is a Turbo monorepo managed by mise and pnpm.
 | `packages/maximal/` | Validated Maximal gateway client |
 | `packages/terminal/` | Trusted OSC, clipboard, notification, color, and Kitty encoders |
 
-Every package install goes through `https://packagefeedproxy.microsoft.io/npm/` via the repository `.npmrc`. The checked-in hook from [`stuffbucket/pnpm-hooks`](https://github.com/stuffbucket/pnpm-hooks) prevents rotating proxy shard URLs from entering `pnpm-lock.yaml`; `pnpm check` verifies both the registry and lockfile policy.
+Every package install goes through `https://packagefeedproxy.microsoft.io/npm/` via the repository `.npmrc`. The checked-in hook from [`stuffbucket/pnpm-hooks`](https://github.com/stuffbucket/pnpm-hooks) prevents rotating proxy shard URLs from entering `pnpm-lock.yaml`; `.github/dependabot.yml` declares the same proxy, because Dependabot can only reach registries listed there. `pnpm check` verifies the registry, the Dependabot registry, and the lockfile policy.
 
 ## Status
 

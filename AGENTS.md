@@ -19,7 +19,7 @@ Max is a Maximal-native terminal coding agent in a Turbo monorepo managed by mis
 - Validate files, environment values, HTTP responses, and tool inputs at their boundaries. Keep internal types strict.
 - Max owns its state format, configuration, tools, permissions, sessions, extensions, and product identity.
 - Treat model text, gateway metadata, and remote error bodies as terminal-untrusted. Route them through the selective sanitizer; preserve only explicitly reviewed display capabilities. Agent-state OSC sequences are emitted only by Max's trusted lifecycle reporter, never passed through from model text.
-- Keep `.npmrc`, `.pnpmfile.cjs`, `apply-pnpm-tarball-policy.mjs`, the root policy, and `pnpm-workspace.yaml` aligned. Installs must resolve through the configured proxy.
+- Keep `.npmrc`, `.pnpmfile.cjs`, `apply-pnpm-tarball-policy.mjs`, the root policy, `pnpm-workspace.yaml`, and the `.github/dependabot.yml` registry aligned. Installs must resolve through the configured proxy.
 
 ## Changes
 

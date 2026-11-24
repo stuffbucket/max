@@ -1,0 +1,29 @@
+{
+  "name": "@stuffbucket/maximal-client",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Validated Maximal gateway client for Max",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "test": "node --experimental-strip-types --test \"src/**/*.test.ts\"",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@stuffbucket/max-agent": "workspace:*"
+  },
+  "engines": {
+    "node": ">=26.0.0"
+  }
+}

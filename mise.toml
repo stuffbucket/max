@@ -1,0 +1,11 @@
+# Max development toolchain. Node is pinned in .nvmrc; pnpm is pinned here and in package.json.
+[tools]
+actionlint = "1.7.12"
+pnpm = "12.21.0"
+
+[settings]
+idiomatic_version_file_enable_tools = ["node"]
+lockfile = true
+
+[env]
+_.path = ["{{config_root}}/node_modules/.bin"]

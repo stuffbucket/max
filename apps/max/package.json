@@ -1,0 +1,35 @@
+{
+  "name": "@stuffbucket/max",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Max: a Maximal-native terminal coding agent",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stuffbucket/max.git",
+    "directory": "apps/max"
+  },
+  "bin": {
+    "max": "dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "test": "node --experimental-strip-types --test \"src/**/*.test.ts\"",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@earendil-works/pi-tui": "1.5.2",
+    "@stuffbucket/max-agent": "workspace:*",
+    "@stuffbucket/max-browser": "workspace:*",
+    "@stuffbucket/max-terminal": "workspace:*",
+    "@stuffbucket/maximal-client": "workspace:*"
+  },
+  "engines": {
+    "node": ">=26.0.0"
+  }
+}

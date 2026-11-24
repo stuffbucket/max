@@ -1,0 +1,37 @@
+{
+  "name": "max-workspace",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Maximal-native terminal coding agent workspace",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "turbo run build",
+    "check": "actionlint && turbo run typecheck test build && node apply-pnpm-tarball-policy.mjs --check && node scripts/check.mjs",
+    "clean": "turbo run clean",
+    "max": "node apps/max/dist/cli.js",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "@stuffbucket/max": "workspace:*",
+    "@types/node": "26.6.6",
+    "turbo": "2.11.11",
+    "typescript": "7.0.2"
+  },
+  "engines": {
+    "node": ">=26.0.0"
+  },
+  "packageManager": "pnpm@12.21.0",
+  "pnpmTarballUrlPolicy": {
+    "rules": [
+      {
+        "registry": "https://packagefeedproxy.microsoft.io/npm/",
+        "includeTarballHostSuffixes": [
+          "pkgs.visualstudio.com"
+        ],
+        "action": "omit"
+      }
+    ]
+  }
+}

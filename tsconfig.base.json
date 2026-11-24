@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "skipLibCheck": true,
+    "types": ["node"],
+    "paths": {
+      "@stuffbucket/max-agent": ["./packages/agent/src/index.ts"],
+      "@stuffbucket/max-browser": ["./packages/browser/src/index.ts"],
+      "@stuffbucket/max-terminal": ["./packages/terminal/src/index.ts"],
+      "@stuffbucket/maximal-client": ["./packages/maximal/src/index.ts"]
+    }
+  }
+}

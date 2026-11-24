@@ -1,0 +1,7 @@
+pnpmfile: .pnpmfile.cjs
+
+packages:
+  - "apps/*"
+  - "packages/*"
+
+linkWorkspacePackages: true
